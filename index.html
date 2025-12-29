@@ -24,7 +24,7 @@
     agent-id="5c0c46ba-6ccf-4030-80df-995d53a744a3"
     language-code="zh-hk"
     max-query-length="-1"
-    chat-title="職業治療智能支援助理">  <!-- Updated title here -->
+    chat-title="職業治療智能支援助理">
     <df-messenger-chat></df-messenger-chat>
   </df-messenger>
 
@@ -32,11 +32,30 @@
     window.addEventListener('dfMessengerLoaded', function () {
       const dfMessenger = document.querySelector('df-messenger');
       const chatElement = dfMessenger.shadowRoot.querySelector('df-messenger-chat');
+      if (chatElement) {
+        const sheet = new CSSStyleSheet();
+        sheet.replaceSync(`
+          div.chat-wrapper {
+            height: 60vh !important;   /* Reduces overall height to 60% of viewport on mobile */
+            max-height: 60vh !important;
+          }
+          @media screen and (min-width: 600px) {
+            div.chat-wrapper {
+              height: 500px !important;  /* Fixed reasonable height on desktop/tablet */
+              max-height: 500px !important;
+            }
+          }
+        `);
+        chatElement.shadowRoot.adoptedStyleSheets = [...chatElement.shadowRoot.adoptedStyleSheets, sheet];
+      }
+
+      // Retain input font size adjustment to prevent auto-zoom
       const userInput = chatElement.shadowRoot.querySelector('df-messenger-user-input');
       if (userInput) {
         const inputBox = userInput.shadowRoot.querySelector('input');
         if (inputBox) {
-          inputBox.style.fontSize = '17px';  // Prevents auto-zoom on focus
+          inputBox.style.fontSize = '17px';
+          inputBox.placeholder = '請輸入您的查詢...';
         }
       }
     });
