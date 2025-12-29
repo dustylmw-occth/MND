@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>MND Chatbot</title>
+  <title>職業治療智能支援助理</title>
   <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
   <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
   <style>
@@ -24,7 +24,7 @@
     agent-id="5c0c46ba-6ccf-4030-80df-995d53a744a3"
     language-code="zh-hk"
     max-query-length="-1"
-    chat-title="MND Chatbot">
+    chat-title="職業治療智能支援助理">  <!-- Updated title here -->
     <df-messenger-chat></df-messenger-chat>
   </df-messenger>
 
@@ -36,7 +36,7 @@
       if (userInput) {
         const inputBox = userInput.shadowRoot.querySelector('input');
         if (inputBox) {
-          inputBox.style.fontSize = '17px';  // Supplementary measure to suppress auto-zoom on focus
+          inputBox.style.fontSize = '17px';  // Prevents auto-zoom on focus
         }
       }
     });
